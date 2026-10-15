@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: sweetie-bakery
+    runtime: go
+    buildCommand: go build -o app .
+    startCommand: ./app
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DB_PATH
+        value: /var/data/bakery.db
+    # Persistent disks may require a paid plan; verify current host pricing.
+    disk:
+      name: bakery-data
+      mountPath: /var/data
+      sizeGB: 1
